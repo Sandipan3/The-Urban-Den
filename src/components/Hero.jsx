@@ -47,19 +47,19 @@ const Hero = () => {
 
             {/*  TEXT MOVEMENT */}
             <motion.div style={{ y, opacity }} className="leading-none">
-              <p className="text-xl sm:text-3xl md:text-5xl font-bold font-heading text-left">
+              <p className="text-xl sm:text-3xl md:text-5xl font-bold font-heading text-center md:text-left">
                 THE
               </p>
 
-              <p className="text-5xl sm:text-6xl md:text-8xl font-bold font-heading text-brand-yellow text-left ">
+              <p className="text-5xl sm:text-6xl md:text-8xl font-bold font-heading text-brand-yellow text-center md:text-left ">
                 URBAN
               </p>
 
-              <p className="text-5xl sm:text-6xl md:text-8xl font-bold font-heading text-left">
+              <p className="text-5xl sm:text-6xl md:text-8xl font-bold font-heading text-center md:text-left">
                 DEN
               </p>
 
-              <p className="mt-4 text-[10px] sm:text-xs tracking-widest text-brand-yellow uppercase text-left">
+              <p className="mt-4 text-[10px] sm:text-xs tracking-widest text-brand-yellow uppercase  text-center md:text-left ">
                 PREMIUM PET GROOMING
               </p>
             </motion.div>
