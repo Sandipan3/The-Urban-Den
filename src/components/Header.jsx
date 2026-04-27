@@ -8,7 +8,7 @@ const Header = ({ dark, toggleTheme }) => {
       <div className=" mx-auto px-4 py-4 flex justify-between items-center rounded-2xl border border-brand-light/10 dark:border-gray-500 bg-brand-white dark:bg-zinc-950 dark:backdrop-blur-md shadow-sm">
         <Link to="/" className="flex items-center gap-3">
           <img
-            src={dark ? "/logo-dark.svg" : "/logo-light.svg"}
+            src={dark ? "/logo-dark-header.svg" : "/logo-light.svg"}
             alt="Urban Den Logo"
             className="w-8 h-8"
             loading="lazy"

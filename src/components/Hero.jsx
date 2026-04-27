@@ -32,15 +32,15 @@ const Hero = () => {
             THE
           </p>
 
-          <p className="block text-5xl sm:text-6xl md:text-9xl font-bold font-heading sm:text-left">
+          <p className="block text-5xl sm:text-6xl md:text-9xl font-bold font-heading sm:text-left text-brand-yellow">
             URBAN
           </p>
 
-          <p className="block text-5xl sm:text-6xl md:text-9xl font-bold font-heading sm:text-left text-brand-yellow">
+          <p className="block text-5xl sm:text-6xl md:text-9xl font-bold font-heading sm:text-left ">
             DEN
           </p>
 
-          <p className="mt-4 text-[10px] sm:text-xs tracking-widest text-brand-light uppercase sm:text-left">
+          <p className="mt-4 text-[10px] sm:text-xs tracking-widest text-brand-yellow uppercase sm:text-left">
             PREMIUM PET GROOMING
           </p>
         </div>
@@ -51,7 +51,7 @@ const Hero = () => {
         <img
           src="https://images.freeimages.com/images/large-previews/bd2/siberian-husky-1464646.jpg?fmt=avif&h=350"
           alt="Dog"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-xl shadow-lg"
         />
       </div>
     </section>
