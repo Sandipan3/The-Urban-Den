@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -11,14 +12,14 @@ const navLinks = [
 ];
 
 const containerVariants = {
-  hidden: { x: "100%", opacity: 0 },
+  hidden: { x: "100%" },
   visible: {
     x: "0%",
-    opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      ease: "easeOut",
-      duration: 0.3,
+      type: "spring",
+      damping: 25,
+      stiffness: 200,
+      staggerChildren: 0.1,
     },
   },
 };
@@ -32,79 +33,106 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative">
-      {/* Desktop */}
-      <div className="hidden md:flex gap-8 items-center font-body text-sm tracking-wide">
+    <nav className="relative">
+      {/* Desktop Menu */}
+      <div className="hidden md:flex gap-8 items-center font-body text-sm tracking-widest uppercase">
         {navLinks.map((link) => (
           <Link
             key={link.to}
             to={link.to}
-            className="relative text-brand-text 
-            after:absolute after:left-1/2 after:-translate-x-1/2 
-            after:-bottom-1 after:h-[2px] after:w-full 
-            after:bg-brand-yellow 
-            after:scale-x-0 after:origin-center 
-            after:transition-transform after:duration-300 
-            hover:after:scale-x-100 hover:text-brand-yellow"
+            className="
+              relative py-1
+              text-brand-yellow transition-opacity duration-300
+            
+              after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full 
+     
+              after:bg-brand-dark dark:after:bg-brand-white 
+            
+              after:scale-x-0 after:origin-right 
+              after:transition-transform after:duration-500 after:ease-out
+              hover:after:scale-x-100 hover:after:origin-left
+            "
           >
             {link.label}
           </Link>
         ))}
       </div>
 
-      {/* Toggle */}
+      {/* Toggle Button */}
       <button
-        className="md:hidden text-brand-text"
+        className="md:hidden text-brand-dark dark:text-brand-white p-2"
         onClick={() => setOpen(true)}
       >
-        <Menu size={22} />
+        <Menu size={24} />
       </button>
 
-      {/* Mobile */}
-      <AnimatePresence>
-        {open && (
-          <>
-            {/* Drawer */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit={{ x: "100%", opacity: 0 }}
-              className="fixed top-0 right-0 h-full w-64 bg-brand-black-800 text-white z-[60] p-6 flex flex-col"
-            >
-              {/* Close */}
-              <button className="self-end mb-6" onClick={() => setOpen(false)}>
-                <X size={22} />
-              </button>
+      {/* Portal for Mobile Menu */}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {open && (
+              <div className="fixed inset-0 z-[9999] flex justify-end">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-brand-dark/40 backdrop-blur-sm"
+                  onClick={() => setOpen(false)}
+                />
 
-              {/* Links */}
-              <div className="flex flex-col gap-6">
-                {navLinks.map((link) => (
-                  <motion.div key={link.to} variants={itemVariants}>
-                    <Link
-                      to={link.to}
-                      onClick={() => setOpen(false)}
-                      className="text-lg font-body tracking-wide hover:text-brand-yellow transition"
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit={{ x: "100%" }}
+                  className="
+                    relative h-full w-72 
+                    bg-brand-white/90 dark:bg-brand-dark/95 
+                    backdrop-blur-2xl 
+                    border-l border-brand-light/20 
+                    shadow-2xl p-8 flex flex-col
+                  "
+                >
+                  <button
+                    className="self-end p-2 text-brand-yellow"
+                    onClick={() => setOpen(false)}
+                  >
+                    <X size={26} />
+                  </button>
+
+                  <div className="mt-12 flex flex-col gap-8">
+                    {navLinks.map((link) => (
+                      <motion.div key={link.to} variants={itemVariants}>
+                        <Link
+                          to={link.to}
+                          onClick={() => setOpen(false)}
+                          className="
+                            relative inline-block text-3xl font-heading tracking-tight text-brand-yellow
+                        
+                            after:absolute after:-bottom-1 after:left-0 after:h-[1px] after:w-full 
+                            after:bg-brand-dark dark:after:bg-brand-white 
+                            after:scale-x-0 after:origin-left after:transition-transform after:duration-500
+                            hover:after:scale-x-100
+                          "
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <div className="mt-auto pb-4">
+                    <p className="font-body text-[10px] uppercase tracking-[0.2em] text-brand-light">
+                      The Urban Den
+                    </p>
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
-
-            {/* Backdrop (slightly darker) */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-50"
-              onClick={() => setOpen(false)}
-            />
-          </>
+            )}
+          </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
-    </div>
+    </nav>
   );
 };
 

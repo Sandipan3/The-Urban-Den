@@ -7,9 +7,9 @@ export default {
       colors: {
         brand: {
           yellow: "var(--color-yellow)",
-          black: "var(--color-black)",
-          gray: "var(--color-gray)",
-          text: "var(--color-text)",
+          dark: "var(--color-dark-gray)",
+          light: "var(--color-light-gray)",
+          white: "var(--color-white)",
         },
       },
       fontFamily: {

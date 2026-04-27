@@ -35,7 +35,7 @@ const Layout = () => {
       initial={{ opacity: 0.6 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen bg-brand-gray text-brand-text"
+      className="min-h-screen bg-brand-white text-brand-dark dark:bg-brand-dark dark:text-brand-white"
     >
       <Header dark={dark} toggleTheme={toggleTheme} />
 
