@@ -39,7 +39,7 @@ const Layout = () => {
     >
       <Header dark={dark} toggleTheme={toggleTheme} />
 
-      <main className="min-h-[200px] text-center">
+      <main className="min-h-[200px]">
         <Outlet key={location.pathname} />
       </main>
 
