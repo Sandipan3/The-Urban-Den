@@ -20,20 +20,20 @@ const Hero = () => {
   return (
     <div ref={ref} className="h-[200vh]">
       {/* SCROLL SPACE */}
-      <section className="sticky top-0 h-screen flex flex-col md:flex-row">
+      <section className="sticky top-0 h-screen flex flex-col lg:flex-row">
         {/* LEFT SIDE */}
         <div
           className="
           flex flex-col justify-end
-          px-6 sm:px-10 md:px-16 py-10
+          px-6 sm:px-10 lg:px-16 py-10
           bg-brand-white dark:bg-brand-dark
           text-brand-dark dark:text-brand-white
-          w-full md:w-1/2
+          w-full lg:w-1/2
         "
         >
           <div className="leading-none">
             {/* LOGO */}
-            <figure className="hidden md:flex flex-col items-end mb-3 overflow-hidden">
+            <figure className="hidden lg:flex flex-col items-end mb-3 overflow-hidden">
               <img
                 src={theme === "dark" ? darkLogo : LightLogo}
                 alt="The Urban Den logo"
@@ -46,28 +46,30 @@ const Hero = () => {
             </figure>
 
             {/*  TEXT MOVEMENT */}
-            <motion.div style={{ y, opacity }} className="leading-none">
-              <p className="text-xl sm:text-3xl md:text-5xl font-bold font-heading text-center md:text-left">
-                THE
-              </p>
+            <div className="leading-none flex flex-col items-center lg:items-start">
+              <motion.div style={{ y, opacity }} className="leading-none">
+                <p className="text-xl sm:text-3xl md:text-5xl font-bold font-heading text-center lg:text-left">
+                  THE
+                </p>
 
-              <p className="text-5xl sm:text-6xl md:text-8xl font-bold font-heading text-brand-yellow text-center md:text-left ">
-                URBAN
-              </p>
+                <p className="text-5xl sm:text-6xl md:text-8xl font-bold font-heading text-brand-yellow text-center lg:text-left">
+                  URBAN
+                </p>
 
-              <p className="text-5xl sm:text-6xl md:text-8xl font-bold font-heading text-center md:text-left">
-                DEN
-              </p>
+                <p className="text-5xl sm:text-6xl md:text-8xl font-bold font-heading text-center lg:text-left">
+                  DEN
+                </p>
 
-              <p className="mt-4 text-[10px] sm:text-xs tracking-widest text-brand-yellow uppercase  text-center md:text-left ">
-                PREMIUM PET GROOMING
-              </p>
-            </motion.div>
+                <p className="mt-4 text-[10px] sm:text-xs tracking-widest text-brand-yellow uppercase text-center lg:text-left">
+                  PREMIUM PET GROOMING
+                </p>
+              </motion.div>
+            </div>
           </div>
         </div>
 
         {/* RIGHT IMAGE */}
-        <div className="relative w-full md:w-1/2 h-[60vh] md:h-auto p-2 overflow-hidden">
+        <div className="relative w-full lg:w-1/2 h-[60vh] lg:h-auto p-2 overflow-hidden flex justify-center items-center">
           <motion.img
             src="https://images.freeimages.com/images/large-previews/bd2/siberian-husky-1464646.jpg"
             alt="Dog"
